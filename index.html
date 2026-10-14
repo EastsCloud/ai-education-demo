@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Education</title>
+    <link rel="stylesheet" href="./src/styles.css?v=style-core-11" />
+  </head>
+  <body class="app-e app-booting">
+    <div class="student-app-loading" id="student-app-loading" role="status" aria-live="polite">
+      <div class="student-app-loading-mark" aria-hidden="true"><i></i><b></b><em></em></div>
+      <span>正在准备你的学习空间</span>
+    </div>
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="AI Education 导航">
+        <div class="brand">
+          <span class="brand-mark">AI</span>
+          <div>
+            <strong>AI Education</strong>
+            <span>数学</span>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="主要页面">
+          <button class="nav-item active" type="button" data-view="home">首页</button>
+          <button class="nav-item" type="button" data-view="onboarding">测试</button>
+          <button class="nav-item" type="button" data-view="practice">练习</button>
+          <button class="nav-item" type="button" data-view="report">报告</button>
+        </nav>
+
+        <section class="sidebar-summary" aria-label="当前学习目标">
+          <p class="label">当前目标</p>
+          <strong>完成测试后，生成你的数学目标</strong>
+          <span>今天的练习会从学习曲线开始</span>
+        </section>
+      </aside>
+
+      <section class="main-panel">
+        <header class="topbar">
+          <div>
+            <p class="label">一对一 · 练中学 · 帮你学</p>
+            <h1 id="view-title">学生学习首页</h1>
+          </div>
+          <div class="topbar-actions">
+            <section class="top-curve" aria-label="学习曲线概览">
+              <div class="curve-copy">
+                <span>学习曲线</span>
+                <strong>第 3 / 6 周 · 72%</strong>
+              </div>
+              <svg viewBox="0 0 150 56" aria-hidden="true">
+                <path class="mini-axis" d="M8 46 H142"></path>
+                <path class="mini-plan" d="M10 44 C42 33 66 22 94 15 C112 10 128 8 140 7"></path>
+                <path class="mini-current" d="M10 44 C40 36 66 29 94 22 C112 17 128 15 140 13"></path>
+                <circle cx="94" cy="22" r="4"></circle>
+              </svg>
+              <button class="primary-action" type="button" data-view-target="practice">继续练习</button>
+            </section>
+            <button class="student-profile-trigger" id="student-profile-trigger" type="button" aria-label="打开个人设置">林</button>
+          </div>
+        </header>
+
+        <section class="student-settings-layer" id="student-settings-layer" hidden></section>
+
+        <section class="view" id="onboarding" aria-label="测试模块">
+
+          <section class="stage-assessment-panel" id="stage-assessment-panel" aria-live="polite" hidden></section>
+
+          <section class="panel onboarding-flow-panel" id="onboarding-flow-panel">
+            <p class="flow-guidance">正在准备你的学习起点。</p>
+          </section>
+
+          <section class="panel initial-result-panel" data-onboarding-stage="ability_map" hidden>
+            <div class="panel-heading compact-heading">
+              <p class="label">你的数学起点</p>
+              <h3>这不是成绩单，而是一张从现在出发的学习地图。</h3>
+            </div>
+            <div class="initial-result-grid">
+              <div class="initial-result-summary" id="initial-result-summary"></div>
+              <div class="ability-dimension-map primary-ability-map" id="initial-ability-map"></div>
+            </div>
+          </section>
+
+          <div class="content-grid onboarding-basic-layout" data-onboarding-stage="basic_info" hidden>
+            <section class="panel onboarding-basic-capture">
+              <div class="info-grid basic-info-preview" id="basic-info-grid" hidden>
+                <article>
+                  <span>生日</span>
+                  <strong>2014-03-18</strong>
+                </article>
+                <article>
+                  <span>年级</span>
+                  <strong>六年级</strong>
+                </article>
+                <article>
+                  <span>当前阶段</span>
+                  <strong>暑期提升</strong>
+                </article>
+                <article>
+                  <span>使用设备</span>
+                  <strong>iPad</strong>
+                </article>
+              </div>
+              <div class="insight-list onboarding-basic-action" id="basic-info-rationale"></div>
+            </section>
+          </div>
+
+          <section class="panel knowledge-puzzle-panel" data-onboarding-stage="ability_map" hidden>
+            <div class="panel-heading">
+              <p class="label">知识拼图</p>
+              <h3>学习曲线看时间，拼图看知识点慢慢完成。</h3>
+            </div>
+            <div class="knowledge-puzzle-map" id="knowledge-puzzle-map"></div>
+          </section>
+
+          <div class="content-grid onboarding-question-surface" data-onboarding-stage="psychological_personality" hidden>
+            <section class="panel">
+              <div class="generated-question-list" id="psychological-personality-questions"></div>
+            </section>
+          </div>
+
+          <div class="content-grid onboarding-question-surface" data-onboarding-stage="learning_personality" hidden>
+            <section class="panel">
+              <div class="generated-question-list" id="generated-personality-questions"></div>
+            </section>
+          </div>
+
+          <section class="panel student-type-panel" data-onboarding-stage="learning_personality" hidden>
+            <div class="panel-heading compact-heading">
+              <p class="label">学生端反馈</p>
+              <h3>你的学习地图</h3>
+            </div>
+            <div class="student-type-grid" id="student-type-cards"></div>
+          </section>
+
+          <section class="panel onboarding-subject-panel" data-onboarding-stage="subject_selection" hidden>
+            <div class="panel-heading compact-heading">
+              <p class="label">选择学科</p>
+              <h3>从你现在最想学的开始。</h3>
+            </div>
+            <div id="onboarding-subject-selection"></div>
+          </section>
+
+          <section class="panel ability-test-panel" data-onboarding-stage="ability_test" hidden>
+            <div class="panel-heading compact-heading">
+              <p class="label">学生能力测试</p>
+              <h3>从数学起点开始，慢慢做就好。</h3>
+            </div>
+            <div class="ability-question-set" id="ability-question-set"></div>
+          </section>
+
+          <section class="panel static-curve-panel" data-onboarding-stage="goal rhythm static_curve" hidden>
+            <div class="panel-heading compact-heading">
+              <p class="label">目标与静态学习曲线</p>
+              <h3>定下目标，系统生成一条向上的学习曲线</h3>
+            </div>
+            <div class="static-curve-grid">
+              <div class="goal-summary" id="goal-summary"></div>
+              <div class="progress-curve-map" id="progress-curve-map"></div>
+            </div>
+            <div class="curve-option-grid" id="curve-option-grid"></div>
+            <div class="test-cadence-grid" id="test-cadence-grid"></div>
+          </section>
+
+        </section>
+
+        <section class="view active" id="home" aria-labelledby="home-title">
+          <div class="hero-band">
+            <div>
+              <p class="label">学生：林安</p>
+              <h2 id="home-title">今天先做题，再用提示跨过卡点。</h2>
+              <p>
+                今天从“读题找目标”和“把条件转成方程”开始。
+              </p>
+            </div>
+            <div class="hero-metrics" aria-label="学习概览数据">
+              <div>
+                <strong>72%</strong>
+                <span>当前掌握度</span>
+              </div>
+              <div>
+                <strong>18天</strong>
+                <span>连续学习</span>
+              </div>
+              <div>
+                <strong>2层</strong>
+                <span>常用提示深度</span>
+              </div>
+            </div>
+          </div>
+
+          <section class="home-practice-band" aria-label="今天练习">
+            <button class="calendar-card" type="button" data-view-target="practice" aria-label="7 月 8 日，今日练习，开始练习">
+              <span>Jul</span>
+              <strong>08</strong>
+              <em>今日</em>
+            </button>
+            <div class="home-practice-copy">
+              <p class="label">今天</p>
+              <h3 id="home-practice-focus">从这里开始练习</h3>
+              <div class="home-practice-meta">
+                <div class="home-cadence-strip" id="home-cadence-strip" aria-label="最近与接下来的学习节奏"></div>
+                <span id="home-practice-duration">约 15 分钟</span>
+              </div>
+            </div>
+            <button class="primary-action home-practice-start" type="button" data-view-target="practice">开始</button>
+          </section>
+
+          <section class="home-stage-test-entry" id="home-stage-test-entry" hidden aria-live="polite"></section>
+
+          <section class="home-knowledge-band" aria-labelledby="home-knowledge-title">
+            <div class="home-knowledge-copy">
+              <p class="label">知识地图</p>
+              <h3 id="home-knowledge-title">一点一点，把会的地方点亮。</h3>
+              <button class="secondary-action" type="button" data-view-target="atlas">打开知识图鉴</button>
+            </div>
+            <div class="home-knowledge-puzzle-map" id="home-knowledge-puzzle-map" aria-label="知识点掌握地图"></div>
+          </section>
+
+          <section class="student-message-banner" id="student-message-banner" hidden aria-live="polite"></section>
+
+        </section>
+
+        <section class="view" id="practice" aria-labelledby="practice-title">
+          <div class="section-head">
+            <h2 id="practice-title">今天，就专心做这一组题。</h2>
+          </div>
+          <section class="panel training-entry-panel">
+            <div class="panel-heading">
+              <p class="label" id="training-date-label">今日练习</p>
+              <h3 id="training-focus-title">题意分析与列方程</h3>
+            </div>
+            <div class="single-task-card">
+              <strong>从这里开始</strong>
+              <p id="training-entry-copy">今天先从一道题开始。</p>
+              <div class="task-action-row">
+                <button class="primary-action task-start" type="button" data-view-target="practice">开始做题</button>
+              </div>
+            </div>
+          </section>
+          <div class="practice-layout">
+            <section class="panel question-panel">
+              <div class="practice-question-head">
+                <h3 id="question-stage">先试一试</h3>
+              </div>
+              <div class="practice-fuzzy-progress" id="practice-fuzzy-progress" role="progressbar" aria-label="今日练习进展" aria-valuemin="0" aria-valuemax="100" aria-valuenow="8">
+                <i></i>
+              </div>
+              <p class="question-text" id="question-text">
+                一支钢笔和 3 支铅笔一共 21 元。钢笔比一支铅笔贵 9 元。一支铅笔多少钱？
+              </p>
+              <label class="answer-label" for="answer-input">你的答案</label>
+              <div class="answer-row">
+                <input id="answer-input" type="number" inputmode="numeric" placeholder="输入数字" />
+                <button class="primary-action" type="button" id="submit-answer">提交</button>
+                <button class="text-action practice-retry" type="button" id="reset-practice">重来</button>
+                <button class="primary-action" type="button" id="next-question" disabled hidden>下一题</button>
+              </div>
+              <div class="feedback" id="feedback" aria-live="polite">
+                慢慢想，不急。
+              </div>
+              <div class="step-strip" id="step-strip" aria-label="题目步骤" hidden>
+                <span>读题</span>
+                <span>找条件</span>
+                <span>设未知数</span>
+                <span>列方程</span>
+                <span>求解</span>
+                <span>检查</span>
+              </div>
+            </section>
+
+            <section class="panel hint-panel">
+              <div class="practice-help-head">
+                <h3>卡住了？</h3>
+              </div>
+              <div class="previous-attempt" id="previous-attempt"></div>
+              <div class="hint-stack" id="hint-stack"></div>
+              <button class="secondary-action full" type="button" id="reveal-hint">给我一点提示</button>
+              <p class="hint-note" id="hint-note">先试一试，卡住再打开。</p>
+            </section>
+          </div>
+          <details class="panel support-mode-panel" id="support-mode-panel">
+            <summary>换一种方式想</summary>
+            <div class="support-mode-grid">
+              <div class="strategy-list" id="strategy-list"></div>
+              <div class="guided-mode" id="guided-mode"></div>
+            </div>
+          </details>
+          <section class="panel practice-summary-panel" id="practice-summary-panel" hidden>
+            <div class="panel-heading">
+              <p class="label">今日结果</p>
+              <h3>看一下统计，想继续就自己选择。</h3>
+            </div>
+            <div class="practice-summary-grid">
+              <div class="practice-summary-stats" id="practice-summary-stats"></div>
+              <div class="practice-atlas-entry" id="practice-atlas-entry"></div>
+            </div>
+            <div class="practice-detail-toggle">
+              <button class="secondary-action" type="button" id="toggle-practice-details">查看错题/对题详情</button>
+            </div>
+            <div class="practice-summary-details" id="practice-summary-details" hidden></div>
+            <div class="practice-summary-actions">
+              <button class="primary-action" type="button" id="retry-wrong-questions">一键重做错题</button>
+              <button class="secondary-action" type="button" id="more-same-type">同类型来几道</button>
+              <label class="quantity-choice">
+                <span>难一点</span>
+                <select id="summary-harder-practice-count" aria-label="选择更难加练题数">
+                  <option value="3">3 道</option>
+                  <option value="5">5 道</option>
+                  <option value="8">8 道</option>
+                </select>
+              </label>
+              <button class="secondary-action" type="button" id="more-harder-type">再难一点</button>
+            </div>
+            <div class="practice-stage-test-entry" id="practice-stage-test-entry" hidden aria-live="polite"></div>
+          </section>
+        </section>
+
+        <section class="view" id="atlas" aria-labelledby="atlas-title">
+          <div class="section-head">
+            <p class="label">知识图鉴</p>
+            <h2 id="atlas-title">把数学一点一点点亮。</h2>
+          </div>
+          <div class="atlas-experience">
+            <section class="atlas-map-stage" aria-label="数学知识地图">
+              <div class="atlas-map-intro">
+                <span>数学地图</span>
+                <p id="atlas-map-summary">每一道题，都会让地图留下一个新的亮点。</p>
+              </div>
+              <div class="atlas-light-map" id="atlas-light-map" aria-live="polite"></div>
+              <div class="atlas-map-legend" aria-label="知识地图图例">
+                <span class="bright">已经点亮</span>
+                <span class="partial">正在练习</span>
+                <span class="dark">还没探索</span>
+              </div>
+            </section>
+            <section class="atlas-focus-panel" id="atlas-focus-panel" aria-live="polite"></section>
+          </div>
+          <div class="atlas-secondary-grid">
+            <section class="atlas-library-panel">
+              <div class="panel-heading">
+                <p class="label">主动探索</p>
+                <h3>想先走一条新的路，也可以。</h3>
+              </div>
+              <div class="atlas-library-list" id="atlas-library-list"></div>
+            </section>
+            <section class="atlas-review-panel">
+              <div class="panel-heading">
+                <p class="label">错题集</p>
+                <h3>回头看一眼，再往前走。</h3>
+              </div>
+              <div class="atlas-review-list" id="atlas-review-list"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="report" aria-labelledby="report-title">
+          <div class="section-head">
+            <p class="label">学习报告</p>
+            <h2 id="report-title">看看你已经走到哪里。</h2>
+          </div>
+          <div class="student-report-dashboard">
+            <section class="student-report-story">
+              <div class="student-report-story-copy">
+                <p class="label">这段时间</p>
+                <h3 id="report-hero-title">从今天的一道题开始。</h3>
+                <p id="report-hero-copy">练习会一点一点变成你的数学地图。</p>
+              </div>
+              <div class="report-ring" id="report-progress-ring" aria-label="学习路径进度">
+                <strong>70%</strong>
+                <span>学习路径</span>
+              </div>
+            </section>
+
+            <section class="student-report-level-evidence" id="report-level-evidence" aria-live="polite"></section>
+
+            <section class="student-report-metric-grid" id="report-metric-grid" aria-label="学习进展"></section>
+
+            <section class="student-report-message" id="report-message" hidden aria-live="polite"></section>
+
+            <div class="student-report-grid">
+              <section class="student-report-panel">
+                <div class="panel-heading">
+                  <p class="label">正在变亮</p>
+                  <h3>你的能力变化</h3>
+                </div>
+                <div class="ability-trend-list" id="report-ability-trend"></div>
+                <div id="report-practice-trend"></div>
+              </section>
+
+              <section class="student-report-panel">
+                <div class="panel-heading">
+                  <p class="label">同阶段参照</p>
+                  <h3>看趋势，不看排名。</h3>
+                </div>
+                <div class="peer-band" id="report-peer-band"></div>
+              </section>
+            </div>
+
+            <div class="student-report-grid">
+              <section class="student-report-panel">
+                <div class="panel-heading">
+                  <p class="label">学习曲线</p>
+                  <h3>从起点到目标</h3>
+                </div>
+                <div class="mini-report-curve" id="report-mini-curve"></div>
+              </section>
+
+              <section class="student-report-panel report-test-history-panel">
+                <div class="panel-heading compact-heading">
+                  <p class="label">测试历史</p>
+                  <h3>用测试确认你的变化</h3>
+                </div>
+                <div class="report-test-history" id="report-test-history"></div>
+              </section>
+            </div>
+
+            <section class="student-report-next">
+              <div class="panel-heading">
+                <p class="label">下一步</p>
+                <h3>只要继续往前走。</h3>
+              </div>
+              <div class="next-action-list" id="report-next-actions"></div>
+            </section>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="./src/student-app-bootstrap.js?v=account-switch-1"></script>
+  </body>
+</html>

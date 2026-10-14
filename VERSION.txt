@@ -1,0 +1,8 @@
+AI Education Semi-AI MVP
+Version: 1.0.0-semi-ai-mvp
+Freeze date: 2026-09-08
+Delivery status: Local demonstrable system; not production-ready
+Runtime: Node.js >= 24, SQLite via node:sqlite
+Contract suite at freeze: 96 passed
+Reference E2E run: journey-mtsalc9v
+

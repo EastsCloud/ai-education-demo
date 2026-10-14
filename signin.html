@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Education | 登录</title>
+    <link rel="stylesheet" href="./src/styles.css?v=style-core-9" />
+  </head>
+  <body class="sign-in-body">
+    <main class="sign-in-shell">
+      <section class="sign-in-intro">
+        <a class="sign-in-brand" href="./index.html"><span>AI</span><strong>AI Education</strong></a>
+        <div>
+          <p>一对一 · 练中学 · 帮你学</p>
+          <h1>把每一次练习，变成自己的下一步。</h1>
+        </div>
+      </section>
+      <section class="sign-in-form-wrap" aria-live="polite">
+        <form id="sign-in-form" class="sign-in-form">
+          <div>
+            <p class="label" id="sign-in-mode-label">登录</p>
+            <h2 id="sign-in-heading">回到你的学习空间。</h2>
+          </div>
+          <div id="register-only-fields" class="sign-in-register-fields" hidden>
+            <label for="register-display-name">显示名称</label>
+            <input id="register-display-name" name="displayName" maxlength="48" autocomplete="name" />
+            <label for="register-role">身份</label>
+            <select id="register-role" name="role">
+              <option value="student">学生</option>
+              <option value="parent">家长</option>
+              <option value="teacher">老师</option>
+            </select>
+          </div>
+          <div id="register-student-fields" class="sign-in-student-fields" hidden>
+            <label for="register-grade-label">当前年级</label>
+            <select id="register-grade-label" name="gradeLabel">
+              <option value="">请选择</option>
+              <option value="小学一年级">小学一年级</option>
+              <option value="小学二年级">小学二年级</option>
+              <option value="小学三年级">小学三年级</option>
+              <option value="小学四年级">小学四年级</option>
+              <option value="小学五年级">小学五年级</option>
+              <option value="小学六年级">小学六年级</option>
+            </select>
+          </div>
+          <label for="sign-in-name">用户名或邮箱</label>
+          <input id="sign-in-name" name="loginName" autocomplete="username" required />
+          <label for="sign-in-password">密码</label>
+          <input id="sign-in-password" name="password" type="password" autocomplete="current-password" required />
+          <div id="register-password-confirm" class="sign-in-register-fields" hidden>
+            <label for="register-password-confirm-input">确认密码</label>
+            <input id="register-password-confirm-input" name="confirmPassword" type="password" autocomplete="new-password" minlength="12" />
+          </div>
+          <p class="sign-in-status" id="sign-in-status"></p>
+          <button class="primary-action" id="sign-in-submit" type="submit">登录</button>
+          <button class="sign-in-toggle" id="sign-in-toggle" type="button">创建账号</button>
+          <p class="sign-in-note" id="sign-in-note">学生可以自己创建账号并开始学习；家长和老师可以稍后选择加入。</p>
+        </form>
+      </section>
+    </main>
+    <script type="module" src="./src/signin-app.js?v=student-self-registration-1"></script>
+  </body>
+</html>

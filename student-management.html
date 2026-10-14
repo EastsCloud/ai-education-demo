@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Education | 学生账号</title>
+    <link rel="stylesheet" href="./src/styles.css?v=style-core-4" />
+  </head>
+  <body class="sign-in-body account-body">
+    <main class="account-shell">
+      <section class="account-intro">
+        <a class="sign-in-brand" id="student-management-return" href="./observer.html"><span>AI</span><strong>AI Education</strong></a>
+        <div>
+          <p id="student-management-role">学生账号</p>
+          <h1>为一位学生建立自己的学习入口。</h1>
+          <span>创建后会自动出现在你的观察空间。</span>
+        </div>
+      </section>
+      <section class="account-content student-management-content" aria-live="polite">
+        <div class="account-heading">
+          <p class="label">添加学生</p>
+          <h2>学生的学习空间，从这里开始。</h2>
+        </div>
+        <form id="student-management-form" class="account-form student-management-form">
+          <label for="managed-student-name">学生显示名称</label>
+          <input id="managed-student-name" name="displayName" maxlength="48" autocomplete="name" required />
+          <label for="managed-student-grade">当前年级</label>
+          <select id="managed-student-grade" name="gradeLabel" required>
+            <option value="小学一年级">小学一年级</option>
+            <option value="小学二年级">小学二年级</option>
+            <option value="小学三年级">小学三年级</option>
+            <option value="小学四年级">小学四年级</option>
+            <option value="小学五年级" selected>小学五年级</option>
+            <option value="小学六年级">小学六年级</option>
+          </select>
+          <label for="managed-student-login">登录用户名或邮箱</label>
+          <input id="managed-student-login" name="loginName" autocomplete="username" required />
+          <label for="managed-student-password">初始密码</label>
+          <input id="managed-student-password" name="password" type="password" autocomplete="new-password" minlength="12" required />
+          <label for="managed-student-password-confirm">确认初始密码</label>
+          <input id="managed-student-password-confirm" name="confirmPassword" type="password" autocomplete="new-password" minlength="12" required />
+          <p class="account-status" id="student-management-status"></p>
+          <p class="student-management-result" id="student-management-result" hidden></p>
+          <button class="primary-action" id="student-management-submit" type="submit">创建学生账号</button>
+          <a class="student-management-back" id="student-management-back" href="./observer.html">回到观察空间</a>
+        </form>
+        <section class="student-link-section" aria-labelledby="relationship-invite-title">
+          <div>
+            <p class="label">邀请关联</p>
+            <h3 id="relationship-invite-title">让另一位支持者加入。</h3>
+          </div>
+          <form id="relationship-invite-form" class="account-form student-management-form">
+            <label for="relationship-invite-student">学生</label>
+            <select id="relationship-invite-student" name="studentId" required></select>
+            <label for="relationship-invite-role">邀请身份</label>
+            <select id="relationship-invite-role" name="targetRole" required>
+              <option value="parent">家长</option>
+              <option value="teacher">老师</option>
+            </select>
+            <p class="student-management-muted" id="relationship-invite-empty" hidden>先创建或关联一位学生。</p>
+            <p class="account-status" id="relationship-invite-status"></p>
+            <div class="relationship-code" id="relationship-invite-result" hidden>
+              <span>一次性关联码</span>
+              <strong id="relationship-invite-code"></strong>
+              <button class="text-action" id="relationship-invite-copy" type="button">复制</button>
+            </div>
+            <button class="primary-action" id="relationship-invite-submit" type="submit">生成关联码</button>
+          </form>
+        </section>
+        <section class="student-link-section" aria-labelledby="relationship-accept-title">
+          <div>
+            <p class="label">加入学生</p>
+            <h3 id="relationship-accept-title">输入收到的关联码。</h3>
+          </div>
+          <form id="relationship-accept-form" class="account-form student-management-form">
+            <label for="relationship-accept-code">关联码</label>
+            <input id="relationship-accept-code" name="code" autocomplete="off" autocapitalize="characters" required />
+            <p class="account-status" id="relationship-accept-status"></p>
+            <p class="student-management-result" id="relationship-accept-result" hidden></p>
+            <button class="primary-action" id="relationship-accept-submit" type="submit">关联学生</button>
+          </form>
+        </section>
+        <section class="student-link-section" aria-labelledby="relationship-manage-title">
+          <div>
+            <p class="label">我的关联</p>
+            <h3 id="relationship-manage-title">管理自己正在支持的学生。</h3>
+          </div>
+          <p class="student-management-muted">解除只会移除你自己的查看和支持权限，不会删除学生账号、学习记录或其他支持者的关联。</p>
+          <div class="student-link-list" id="student-link-list"></div>
+          <p class="account-status" id="relationship-manage-status"></p>
+        </section>
+      </section>
+    </main>
+    <script type="module" src="./src/student-management-app.js?v=student-management-2"></script>
+  </body>
+</html>

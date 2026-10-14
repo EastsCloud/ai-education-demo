@@ -1,0 +1,61 @@
+# Create this Blueprint once, from the primary repository.
+# Both services follow the same code; their data and runtime modes are separate.
+services:
+  - type: web
+    name: ai-education-test
+    runtime: node
+    repo: https://github.com/EastsCloud/ai-education
+    branch: main
+    region: singapore
+    plan: 0.5c-512mb
+    buildCommand: node --version
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeployTrigger: commit
+    numInstances: 1
+    disk:
+      name: test-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 24.21.0
+      - key: HOST
+        value: 0.0.0.0
+      - key: AI_EDUCATION_DATABASE_PATH
+        value: /var/data/ai-education.sqlite
+      - key: AI_EDUCATION_SEED_DEMO_ACCOUNTS
+        value: "false"
+      - key: AI_EDUCATION_PUBLIC_DEMO
+        value: "false"
+  - type: web
+    name: ai-education-demo
+    runtime: node
+    repo: https://github.com/EastsCloud/ai-education-demo
+    branch: main
+    region: singapore
+    plan: 0.5c-512mb
+    buildCommand: node --version
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeployTrigger: commit
+    numInstances: 1
+    disk:
+      name: demo-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 24.21.0
+      - key: HOST
+        value: 0.0.0.0
+      - key: AI_EDUCATION_DATABASE_PATH
+        value: /var/data/ai-education.sqlite
+      - key: AI_EDUCATION_SEED_DEMO_ACCOUNTS
+        value: "false"
+      - key: AI_EDUCATION_PUBLIC_DEMO
+        value: "true"

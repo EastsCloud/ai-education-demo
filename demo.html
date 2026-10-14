@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Education | 体验入口</title>
+    <link rel="stylesheet" href="./src/styles.css?v=style-core-4" />
+  </head>
+  <body class="experience-body">
+    <main class="experience-shell">
+      <section class="experience-intro" aria-labelledby="experience-title">
+        <a class="experience-brand" href="./signin.html" aria-label="AI Education 登录">
+          <span>AI</span>
+          <strong>AI Education</strong>
+        </a>
+        <div class="experience-copy">
+          <p class="label">数学成品体验</p>
+          <h1 id="experience-title">从一次练习，看见一对一如何发生。</h1>
+          <div class="experience-path" aria-label="学习主路径">
+            <span>了解起点</span>
+            <i aria-hidden="true"></i>
+            <span>确定目标</span>
+            <i aria-hidden="true"></i>
+            <span>练中学</span>
+            <i aria-hidden="true"></i>
+            <span>看见成长</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="experience-roles" aria-live="polite">
+        <div class="experience-roles-heading">
+          <p class="label">选择视角</p>
+          <h2>进入正在运行的学习空间。</h2>
+        </div>
+        <div class="experience-role-list">
+          <button class="experience-role student" type="button" data-demo-role="student">
+            <span class="experience-role-symbol" aria-hidden="true">学</span>
+            <span>
+              <strong>学生</strong>
+              <small>从今天的练习开始</small>
+            </span>
+            <b aria-hidden="true">→</b>
+          </button>
+          <button class="experience-role parent" type="button" data-demo-role="parent">
+            <span class="experience-role-symbol" aria-hidden="true">家</span>
+            <span>
+              <strong>家长</strong>
+              <small>查看过程与成长趋势</small>
+            </span>
+            <b aria-hidden="true">→</b>
+          </button>
+          <button class="experience-role teacher" type="button" data-demo-role="teacher">
+            <span class="experience-role-symbol" aria-hidden="true">师</span>
+            <span>
+              <strong>老师</strong>
+              <small>查看学习证据与支持建议</small>
+            </span>
+            <b aria-hidden="true">→</b>
+          </button>
+        </div>
+        <p class="experience-status" id="experience-status" aria-live="polite"></p>
+      </section>
+    </main>
+    <script type="module" src="./src/demo-app.js?v=shared-demo-session-1"></script>
+  </body>
+</html>

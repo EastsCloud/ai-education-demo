@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Education | 家长与老师</title>
+    <link rel="stylesheet" href="./src/styles.css?v=style-core-11" />
+  </head>
+  <body class="observer-body">
+    <div class="observer-app-loading" id="observer-app-loading" role="status" aria-live="polite">
+      <div class="observer-app-loading-mark" aria-hidden="true"><i></i><b></b><em></em></div>
+      <span>正在准备观察空间。</span>
+    </div>
+    <main class="observer-shell" id="observer-shell" hidden>
+      <aside class="observer-sidebar" aria-label="观察端导航">
+        <a class="observer-brand" href="./index.html">
+          <span>AI</span>
+          <strong>AI Education</strong>
+        </a>
+        <div class="observer-student-card">
+          <div id="observer-student-initial" class="observer-avatar">林</div>
+          <div>
+            <span>正在支持</span>
+            <strong id="observer-student-label">林安 · 数学</strong>
+          </div>
+        </div>
+        <div class="observer-side-copy">
+          <p>学生端只保留练中学。</p>
+          <p>这里看过程、趋势和下一步支持。</p>
+        </div>
+        <div class="observer-account-links">
+          <a class="observer-return" href="./student-management.html">学生账号</a>
+          <a class="observer-return" href="./account.html">账号与安全</a>
+          <a class="observer-return" href="./signin.html" id="observer-account-switch">切换账号</a>
+        </div>
+      </aside>
+      <section class="observer-main">
+        <header class="observer-topbar">
+          <div class="observer-student-picker">
+            <span>学生</span>
+            <select id="observer-student" aria-label="选择学生" disabled>
+              <option>正在读取学生</option>
+            </select>
+          </div>
+          <div>
+            <span>观察角色</span>
+            <select id="observer-role" aria-label="选择观察角色">
+              <option value="parent">家长</option>
+              <option value="teacher">老师</option>
+            </select>
+          </div>
+          <span id="observer-save-state" aria-live="polite">正在同步学习记录</span>
+        </header>
+        <div id="observer-dashboard" aria-live="polite"></div>
+      </section>
+    </main>
+  <script type="module" src="./src/observer-app.js?v=authenticated-sync-2"></script>
+  </body>
+</html>

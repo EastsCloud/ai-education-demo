@@ -1,0 +1,17 @@
+.tools/
+node_modules/
+runtime-data/
+data/
+output/
+test-reports/
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+*.log
+*.zip
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
