@@ -1,7 +1,7 @@
 .tools/
 node_modules/
 runtime-data/
-data/
+/data/
 output/
 test-reports/
 *.sqlite

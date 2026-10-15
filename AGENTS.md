@@ -15,3 +15,7 @@ Do not commit runtime databases, private environment variables, logs, or bundled
 Node installations. Preserve the original delivery archive and local snapshots.
 For deployment changes run the contract suite, the five-learner E2E, and the
 Render runtime smoke test. Cloud startup must not reset or copy over an existing DB.
+Before publishing deployment changes, export the committed Git tree to a clean
+directory and run those checks there. Ignored local files must not mask missing
+runtime dependencies. Keep /data/ anchored to the repository root: src/data/
+contains required versioned curriculum source, not disposable runtime data.
